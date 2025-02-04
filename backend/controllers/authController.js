@@ -1,5 +1,7 @@
+
 const bcrypt = require("bcryptjs");
-const { findUserByUsername, createUsername, createUserData, createTask } = require("../models/userModel");
+const { findUserByUsername, createUsername, createUserData } = require("../models/userModel");
+const {createTask, findAllTask} = require("../models/taskModel");
 
 // Helper function for hashing passwords
 function hashPassword(password) {
@@ -38,6 +40,8 @@ exports.login = (req, res) => {
             if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
             req.session.user = { id: results[0].id, username: results[0].username };
+            // Storage.sessionStorage.setItem("username",results[0].username)
+            // sessionStorage.setItem(username,results[0].username)
             res.json({ message: "Login successful", user: req.session.user });
         });
     });
@@ -106,3 +110,16 @@ exports.AddTask = (req, res) => {
         res.status(201).json({ message: "Task created successfully" });
     });
 };
+
+exports.getAllTask= (req, res) => {
+    const  username = req.query.username;
+    console.log("get all task in authcontroller"+username)
+    findAllTask(username, (err, results) => {
+        if (err) {
+            console.error("Error fetching tasks:", err);
+            console.log(results)
+            return res.status(500).json({ error: "Error fetching tasks" });
+        }
+        res.json({ message: "Tasks fetched successfully", tasks: results });
+    });
+}
