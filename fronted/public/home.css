@@ -51,7 +51,7 @@ nav {
     box-sizing: border-box;
 }
 
-#add-task {
+#add-task ,#delete-selected{
     margin-top: 10px;
 }
 

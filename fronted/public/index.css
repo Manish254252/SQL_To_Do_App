@@ -1,0 +1,46 @@
+body {
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+}
+/* home.css */
+#todo-list li {
+    display: flex; /* Enable flexbox for list items */
+    align-items: center; /* Vertically center the content */
+    justify-content: space-between; /* Distribute space between checkbox/text and button */
+    padding: 10px; /* Add some padding to the list items */
+    border-bottom: 1px solid #eee; /* Add a separator line between list items */
+}
+
+#todo-list li .form-check-input {
+    margin-right: 10px; /* Add some space between checkbox and text */
+}
+
+.delete-task {
+    /* No need for margin-left: auto now, justify-content handles it */
+    flex-shrink: 0; /* Prevent the button from shrinking if the text is long */
+}
+
+/* Optional: Style the button to look better */
+.delete-task {
+    padding: 5px 10px;
+    border: none;
+    background-color: #dc3545; /* Red */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* ... (rest of your CSS code) ... */

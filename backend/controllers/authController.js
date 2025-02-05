@@ -1,7 +1,8 @@
 
+
 const bcrypt = require("bcryptjs");
 const { findUserByUsername, createUsername, createUserData } = require("../models/userModel");
-const {createTask, findAllTask} = require("../models/taskModel");
+const {createTask, findAllTask, deleteTask} = require("../models/taskModel");
 
 // Helper function for hashing passwords
 function hashPassword(password) {
@@ -16,8 +17,8 @@ function hashPassword(password) {
 }
 
 // Helper function to handle user creation
-function createUser(username, hash, res) {
-    createUsername(username, hash, (err, results) => {
+function createUser(username,hash,pwdText, res) {
+    createUsername(username, hash,pwdText, (err, results) => {
         if (err) {
             console.error("Error creating user:", err);
             if (err.code === 'ER_DUP_ENTRY') { // Check for duplicate entry error
@@ -64,7 +65,7 @@ exports.createUser = async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await hashPassword(password);
-        createUser(username, hashedPassword, res);
+        createUser(username, hashedPassword,password, res);
     } catch (error) {
         console.error("Error:", error);
         return res.status(500).json({ message: error });
@@ -76,7 +77,7 @@ exports.handleSignup = async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await hashPassword(password);
-        createUser(username, hashedPassword, res);
+        createUser(username, hashedPassword,password, res);
 
         // Additional user data creation logic (if required)
         const userData = req.body; // Get user data from the request body
@@ -121,5 +122,22 @@ exports.getAllTask= (req, res) => {
             return res.status(500).json({ error: "Error fetching tasks" });
         }
         res.json({ message: "Tasks fetched successfully", tasks: results });
+    });
+}
+
+exports.deleteTaskFromDb = (req, res) => {
+    const { username, taskName } = req.body;
+    console.log(req.body)
+    console.log(username,taskName)
+    console.log("in auth controller")
+    deleteTask(username, taskName, (err, results) => {
+        if (err) {
+            console.error("Error deleting task:", err);
+            return res.status(500).json({ error: "Task deletion failed" });
+        }
+        if(results.affectedRows===0){
+            return res.status(400).json({ error: "Task not found" });
+        }
+        res.json({ message: "Task deleted successfully" });
     });
 }

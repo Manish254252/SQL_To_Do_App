@@ -20,4 +20,13 @@ const findAllTask = (username, callback) => {
     );
 };
 
-module.exports = { createTask,findAllTask};
+
+const deleteTask = (username,taskName, callback) => {
+    console.log("in model")
+    console.log(username,taskName)
+    db.query(
+        "DELETE  FROM task WHERE username = ? AND taskName = ?",
+        [username,taskName],callback
+    );
+};
+module.exports = { createTask,findAllTask,deleteTask};

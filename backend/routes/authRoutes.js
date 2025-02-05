@@ -9,6 +9,6 @@ router.post("/createUser", authController.createUser);
 router.post("/createUserData", authController.handleSignup);
 router.post("/addTask", authController.AddTask);
 router.get("/getAllTask", authController.getAllTask);
-// router.delete("/deleteTask", authController.deleteTask);
+router.delete("/deleteTask", authController.deleteTaskFromDb);
 
 module.exports = router;

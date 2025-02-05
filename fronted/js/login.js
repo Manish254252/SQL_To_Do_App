@@ -1,4 +1,4 @@
-let  taskList = [];
+// let  taskList = [];
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -23,4 +23,4 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 });
 
-exports.taskList = taskList;
+// exports.taskList = taskList;

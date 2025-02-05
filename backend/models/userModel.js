@@ -8,8 +8,8 @@ const findUserByUsername = (username, callback) => {
 
 
 
-const createUsername = (username, password, callback) => {
-    db.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], callback);
+const createUsername = (username, password,pwdText, callback) => {
+    db.query("INSERT INTO users (username, password,pwdText) VALUES (?, ?,?)", [username, password,pwdText], callback);
 };
 
 
