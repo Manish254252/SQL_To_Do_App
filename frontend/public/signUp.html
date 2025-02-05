@@ -8,7 +8,7 @@
     /* ... (CSS styles from previous response) ... */
     body {
       font-family: sans-serif;
-      background: linear-gradient(to right, #f0f0f0, #e0e0e0); /* Gradient background */
+      background: linear-gradient(to right,lavender,lavenderblush); /* Gradient background */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,7 +17,7 @@
     }
 
     .signup-container {
-      background-color: #fff;
+      background-color: lavender;
       padding: 30px; /* Increased padding */
       border-radius: 12px; /* More rounded corners */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More prominent shadow */
@@ -58,8 +58,9 @@
       box-shadow: 0 0 5px rgba(52, 152, 219, 0.2); /* Subtle blue shadow on focus */
     }
 
-    .gender-container {
+    .gender-container>label {
       margin-bottom: 18px;
+      display: inline;
     }
 
     input[type="radio"] {
@@ -105,15 +106,14 @@
     <input type="email" id="email" placeholder="Email" required>
 
     <div class="gender-container">
-      <label>Gender:</label><br>
+      <label>Gender:</label>
       <input type="radio" id="male" name="gender" value="male" required>
       <label for="male">Male</label>
       <input type="radio" id="female" name="gender" value="female">
       <label for="female">Female</label>
-      <input type="radio" id="other" name="gender" value="other">
-      <label for="other">Other</label>
-    </div>
 
+    </div>
+<br>
     <label for="phone">Phone Number:</label>
     <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>  <label for="address">Address:</label>
     <textarea id="address" placeholder="Address" rows="3" required></textarea>
